@@ -1,0 +1,9 @@
+package br.com.fiapride.model;
+
+public class Pet {
+	
+	public double versao;
+	public String cor;
+	public double capacidadeEmGB;
+
+}
