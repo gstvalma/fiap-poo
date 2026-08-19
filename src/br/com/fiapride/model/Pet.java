@@ -2,8 +2,8 @@ package br.com.fiapride.model;
 
 public class Pet{
 	
-	public String marca;
+	public String nome;
 	public String especie;
-	public int idade;
+	public double idade; //Idade em anos. 1 ano e seis meses, por exemplo, seriam 1.5
 
 }
