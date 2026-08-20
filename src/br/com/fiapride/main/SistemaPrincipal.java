@@ -9,18 +9,27 @@ public class SistemaPrincipal {
 		// TODO Auto-generated method stub
 		
 		
-		Passageiro passageiro1 = new Passageiro();
-		passageiro1.nome = "Ana Silva";
-		passageiro1.saldo = 50;
-		
-		Passageiro passageiro2 = new Passageiro();
-		passageiro2.nome = "Carlos souza";
-		passageiro2.saldo = 12.5;
-		
-		System.out.println("- - - Sistema FiapRide - - -");
-		System.out.println("Passageiro: " + passageiro1.nome + " | Saldo: R$" + passageiro1.saldo);
-		System.out.println("Passageiro : " + passageiro2.nome + " | Saldo: R$ " + passageiro2.saldo);
-		
+		// INSTANCIAÇÃO
+        // O comando 'new' aloca memória para um novo objeto.
+        // Criando o primeiro passageiro (Objeto 1)
+        Passageiro passageiro1 = new Passageiro("Ana Silva", "222");
+        System.out.println("Regarga passageiro 1");
+        passageiro1.adicionarSaldo(50.0);
+
+        // Criando o segundo passageiro (Objeto 2)
+        Passageiro passageiro2 = new Passageiro("Carlos Souza", "333");
+        System.out.println("Regarga passageiro 2");
+        passageiro2.adicionarSaldo(12.5);
+
+        System.out.println("--- Sistema FiapRide ---");
+        System.out.println("Passageiro: " + passageiro1.nome + " | Saldo: R$ " + passageiro1.saldo + " | CPF: " + passageiro1.cpf);
+        System.out.println("Passageiro: " + passageiro2.nome + " | Saldo: R$ " + passageiro2.saldo + " | CPF: " + passageiro2.cpf);
+        
+        System.out.println("Pagando viagem do passageiro 1");
+        passageiro1.pagarViagem(20);
+        System.out.println("Pagando viagem do passageiro 2");
+        passageiro2.pagarViagem(20);
+
 		
 		Pet pet1 = new Pet();
 		pet1.nome = "Hemerson";
@@ -35,7 +44,7 @@ public class SistemaPrincipal {
 		System.out.println(" - - - Informações de seu pet - - -");
 		System.out.println("|      Nome      |     Especie     |Idade (em anos)|");
 		System.out.println("|   " + pet1.nome + "  | " + pet1.especie + "  | "     + pet1.idade + "    |");
-		System.out.println("|   " + pet2.nome + "  | " + pet2.especie + "  | " + pet2.idade + " |"  );
+		System.out.println("|   " + pet2.nome + "  |	 " + pet2.especie + "  | " + pet2.idade + " |"  );
 
 	}
 

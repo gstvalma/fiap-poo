@@ -1,0 +1,9 @@
+*.class
+# Ignorar pastas geradas por IDEs (VS Code, IntelliJ, Eclipse)
+.vscode/
+.idea/
+*.iml
+.metadata/
+# Ignorar pastas de build e dependências locais
+bin/
+target/
