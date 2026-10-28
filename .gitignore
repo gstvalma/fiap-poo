@@ -1,3 +1,4 @@
+# Ignorar arquivos compilados do Java
 *.class
 # Ignorar pastas geradas por IDEs (VS Code, IntelliJ, Eclipse)
 .vscode/

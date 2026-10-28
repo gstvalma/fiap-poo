@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">
-<refactoring comment="Rename compilation unit &apos;br.com.fiapride.model.Kindle.java&apos; to &apos;Pet.java&apos;&#x0D;&#x0A;- Original project: &apos;src&apos;&#x0D;&#x0A;- Original element: &apos;br.com.fiapride.model.Kindle.java&apos;&#x0D;&#x0A;- Renamed element: &apos;br.com.fiapride.model.Pet.java&apos;" description="Rename compilation unit &apos;Kindle.java&apos;" flags="2" id="org.eclipse.jdt.ui.rename.compilationunit" input="/&lt;br.com.fiapride.model{Kindle.java" name="Pet.java" references="false" stamp="1787181917397" version="1.0"/>
-</session>
