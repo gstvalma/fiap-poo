@@ -1,11 +1,11 @@
-# Projeto FiapRide - [Seu Nome Completo]
+# Projeto FiapRide - Luiz Gustavo de Almeida
 
 ## 📊 Informações do Aluno
 
-- **Nome:** [Seu Nome Completo]
-- **RM:** [Seu RM]
-- **Turma:** [Sua Turma]
-- **Curso:** [Seu Curso]
+- **Nome:** Luiz Gustavo de Almeida
+- **RM:** 566613
+- **Turma:** 2CCPR
+- **Curso:** Ciências da computação
 - **GitHub:** [@gstvalma](https://github.com/gstvalma)
 
 ---
@@ -15,138 +15,6 @@
 Este projeto é o resultado do aprendizado nas aulas 1-9 de Programação Orientada a Objetos, onde desenvolvemos o sistema **FiapRide**, um app de mobilidade urbana (tipo Uber) com passageiros, carteira digital, veículos (carro, moto, carro elétrico) e viagens.
 
 Junto com ele desenvolvi o meu projeto pessoal, um **sistema de cadastro de pets para uma clínica veterinária**, com pets (cachorro, gato e pássaro), tutores e vacinação.
-
-### Estrutura
-
-```
-src/
-└── br/com/fiapride/
-    ├── main/
-    │   ├── SistemaPrincipal.java   -> testes do FiapRide
-    │   └── TestePet.java           -> testes do projeto pessoal
-    └── model/
-        ├── Passageiro.java  Veiculo.java  Carro.java  Moto.java
-        ├── Viagem.java  Recarregavel.java  CarroEletrico.java  Celular.java
-        └── Pet.java  Cachorro.java  Gato.java  Passaro.java  Tutor.java  Vacinavel.java
-```
-
-### Como rodar
-
-- **VS Code:** instalar o JDK 21 e a extensão *Extension Pack for Java*, abrir a pasta do projeto e clicar em **Run** em cima do `main` de `SistemaPrincipal` ou `TestePet`.
-- **Terminal:**
-
-```bash
-javac -encoding UTF-8 -d bin $(find src -name "*.java")
-java -cp bin br.com.fiapride.main.SistemaPrincipal
-java -cp bin br.com.fiapride.main.TestePet
-```
-
-### Diagrama de Classes
-
-```mermaid
-classDiagram
-    class Passageiro {
-        -String nome
-        -String cpf
-        -double saldo
-        +adicionarSaldo(valor) void
-        +pagarViagem(custo) void
-        +getSaldo() double
-    }
-    class Veiculo {
-        <<abstract>>
-        -String placa
-        -String modelo
-        -double nivelCombustivel
-        +atualizarPlaca(novaPlaca) void
-        +abastecer(quantidade) void
-        +calcularAutonomia() String
-        +exibirTipo()* void
-    }
-    class Carro {
-        -int capacidadePassageiros
-    }
-    class Moto {
-        -boolean isEletrica
-    }
-    class CarroEletrico {
-        -int nivelBateria
-    }
-    class Recarregavel {
-        <<interface>>
-        +CARGA_MAXIMA = 100
-        +CARGA_MINIMA = 0
-        +recarregar(percentual) void
-    }
-    class Celular {
-        -String marca
-        -int nivelBateria
-    }
-    class Viagem {
-        -String destino
-        -double valor
-        +exibirResumo() void
-        +finalizarViagem(valorCorrida) void
-    }
-    Veiculo <|-- Carro
-    Veiculo <|-- Moto
-    Veiculo <|-- CarroEletrico
-    Recarregavel <|.. CarroEletrico
-    Recarregavel <|.. Celular
-    Viagem --> Passageiro : solicitante
-    Viagem --> Veiculo : veiculoUtilizado
-```
-
-```mermaid
-classDiagram
-    class Pet {
-        <<abstract>>
-        -String nome
-        -String especie
-        -double idade
-        -double peso
-        -Tutor tutor
-        +fazerAniversario() void
-        +atualizarPeso(novoPeso) void
-        +calcularIdadeEmMeses() int
-        +calcularRacaoDiaria() double
-        +trocarTutor(novoTutor) void
-        +exibirFicha() void
-        +emitirSom()* String
-    }
-    class Cachorro {
-        -String porte
-        -int quantidadeVacinas
-    }
-    class Gato {
-        -boolean castrado
-        -int quantidadeVacinas
-        +castrar() void
-    }
-    class Passaro {
-        -boolean asaCortada
-        +podeVoarSolto() boolean
-    }
-    class Tutor {
-        -String nome
-        -String telefone
-        -int quantidadeVacinas
-        +atualizarTelefone(novoTelefone) void
-    }
-    class Vacinavel {
-        <<interface>>
-        +IDADE_MINIMA_VACINA_MESES = 2
-        +vacinar(nomeVacina) void
-        +getQuantidadeVacinas() int
-    }
-    Pet <|-- Cachorro
-    Pet <|-- Gato
-    Pet <|-- Passaro
-    Pet --> Tutor : tutor
-    Vacinavel <|.. Cachorro
-    Vacinavel <|.. Gato
-    Vacinavel <|.. Tutor
-```
 
 ---
 
@@ -292,17 +160,17 @@ Sistema de cadastro de Pets para uma clínica veterinária / pet shop.
 **Quais classes você criou?**
 `Pet` (abstrata), `Cachorro`, `Gato`, `Passaro`, `Tutor` e a interface `Vacinavel`. O teste fica em `TestePet`.
 
-| Aula | O que entrou no projeto pessoal |
-|---|---|
-| 1 | Classe `Pet` com nome, espécie e idade |
-| 2 | `fazerAniversario()`, `atualizarPeso()`, `calcularIdadeEmMeses()` e `calcularRacaoDiaria()` com validações |
-| 3 | Atributos `private`, getters/setters, regra de idade (0 a 40) e nome não vazio |
-| 4 | Construtor padrão + customizados com `this(...)`, sem `setEspecie()` |
-| 5 | Classe `Tutor` associada ao Pet, `trocarTutor()` e `exibirFicha()` |
-| 6 | `Cachorro` (porte P/M/G), `Gato` (castrado / `castrar()`), `Passaro` (asa cortada) |
-| 7 | `emitirSom()` e `calcularRacaoDiaria()` sobrescritos com `@Override` |
-| 8 | `Pet` abstrata com `emitirSom()` abstrato |
-| 9 | Interface `Vacinavel` em `Cachorro`, `Gato` e `Tutor` |
+| Aula | O que entrou no projeto pessoal                                                                            |
+| ---- | ---------------------------------------------------------------------------------------------------------- |
+| 1    | Classe `Pet` com nome, espécie e idade                                                                     |
+| 2    | `fazerAniversario()`, `atualizarPeso()`, `calcularIdadeEmMeses()` e `calcularRacaoDiaria()` com validações |
+| 3    | Atributos `private`, getters/setters, regra de idade (0 a 40) e nome não vazio                             |
+| 4    | Construtor padrão + customizados com `this(...)`, sem `setEspecie()`                                       |
+| 5    | Classe `Tutor` associada ao Pet, `trocarTutor()` e `exibirFicha()`                                         |
+| 6    | `Cachorro` (porte P/M/G), `Gato` (castrado / `castrar()`), `Passaro` (asa cortada)                         |
+| 7    | `emitirSom()` e `calcularRacaoDiaria()` sobrescritos com `@Override`                                       |
+| 8    | `Pet` abstrata com `emitirSom()` abstrato                                                                  |
+| 9    | Interface `Vacinavel` em `Cachorro`, `Gato` e `Tutor`                                                      |
 
 **Qual foi o maior desafio técnico que você enfrentou?**
 O maior desafio foi na aula 8, quando transformei `Pet` (e `Veiculo`) em abstrata. Na hora todo o meu `TestePet` ficou vermelho, porque desde a aula 2 eu criava os pets com `new Pet("Hemerson", "Cachorro", 1.0)`. No começo achei que tinha quebrado o projeto, mas depois entendi que era justamente o `abstract` fazendo o trabalho dele.
@@ -321,6 +189,7 @@ Aprendi que orientação a objetos é mais sobre organizar e proteger as regras 
 Polimorfismo. No começo eu não entendia por que `Veiculo veiculo = new Carro(...)` chamava o método do Carro, sendo que a variável é do tipo Veiculo. O que me ajudou foi separar as duas coisas: o tipo da variável decide **o que** posso chamar (por isso o método tem que existir na mãe) e o objeto decide **qual versão** roda. Depois de fazer o loop dos pets imprimindo "Au Au!" e "Miau!" sem nenhum `if`, ficou claro.
 
 **O que você melhoraria no seu projeto se pudesse refazer?**
+
 - O código de vacinação está repetido em `Cachorro` e `Gato` (mesma regra de idade mínima). Eu criaria uma classe intermediária ou um método auxiliar para não duplicar.
 - Os erros são só `System.out.println`; o método não avisa quem chamou se deu certo ou não (por exemplo, o `finalizarViagem()` não sabe se o `pagarViagem()` foi bloqueado). Eu faria os métodos retornarem `boolean` ou usaria exceções.
 - Usaria uma lista de vacinas (`List<String>`) em vez de só um contador, para ter o histórico.
