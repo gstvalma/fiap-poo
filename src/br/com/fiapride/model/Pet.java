@@ -7,6 +7,23 @@ public class Pet{
 	private double idade; //Idade em anos. 1 ano e seis meses, por exemplo, seriam 1.5
 	private double peso; //Peso em kg
 
+	// CONSTRUTOR PADRÃO: pet resgatado que chegou sem nenhuma informação
+	public Pet() {
+		this("Sem nome", "Não informada");
+	}
+
+	// Todo pet precisa nascer com nome e espécie
+	public Pet(String nome, String especie) {
+		this(nome, especie, 0);
+	}
+
+	// Construtor completo, os outros chamam este com this(...)
+	public Pet(String nome, String especie, double idade) {
+		this.setNome(nome);
+		this.especie = especie;
+		this.setIdade(idade);
+	}
+
 	public void fazerAniversario() {
 		// Regra de negócio: nenhum pet passa dos 40 anos (nem papagaio vive tanto)
 		if (this.idade + 1 > 40) {
@@ -53,7 +70,7 @@ public class Pet{
 		return this.peso;
 	}
 
-	// SETTERS (escrita com regra)
+	// SETTERS
 	public void setNome(String nome) {
 		// nome vazio não identifica ninguém na clínica
 		if (nome == null || nome.trim().isEmpty()) {
@@ -63,9 +80,7 @@ public class Pet{
 		this.nome = nome;
 	}
 
-	public void setEspecie(String especie) {
-		this.especie = especie;
-	}
+	// Não existe setEspecie(): um cachorro não vira gato. A espécie só é definida no construtor.
 
 	public void setIdade(double idade) {
 		// Regra especial: idade entre 0 e 40 anos

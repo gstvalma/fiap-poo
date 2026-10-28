@@ -14,6 +14,13 @@ public class Passageiro {
         this.setSaldo(0); // Todo mundo começa com zero!
     }
 
+    // Construtor para quem já faz a primeira recarga no cadastro (promoção de boas-vindas)
+    // this(...) reaproveita o construtor de cima em vez de repetir o código
+    public Passageiro(String nome, String cpf, double recargaInicial) {
+        this(nome, cpf);
+        this.adicionarSaldo(recargaInicial);
+    }
+
     public void adicionarSaldo(double valor) {
         // Regra de negócio: O valor da recarga deve ser positivo
         if (valor <= 0) {

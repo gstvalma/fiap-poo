@@ -9,15 +9,9 @@ public class TestePet {
 		System.out.println("--- Teste do Meu Projeto Pessoal (Pet) ---");
 
 		// ===== Aula 2 e 3 - Métodos e Encapsulamento =====
-		Pet pet1 = new Pet();
-		pet1.setNome("Hemerson");
-		pet1.setEspecie("Cachorro");
-		pet1.setIdade(1.0);
-
-		Pet pet2 = new Pet();
-		pet2.setNome("Maria Braga");
-		pet2.setEspecie("Calopsita");
-		pet2.setIdade(3.2);
+		// (aula 4: agora os pets já nascem com nome, espécie e idade pelo construtor)
+		Pet pet1 = new Pet("Hemerson", "Cachorro", 1.0);
+		Pet pet2 = new Pet("Maria Braga", "Calopsita", 3.2);
 
 		System.out.println(" - - - Informações de seu pet - - -");
 		System.out.println("|      Nome      |     Especie     |Idade (em anos)|");
@@ -38,6 +32,15 @@ public class TestePet {
 		System.out.println("Pet 2 continua: " + pet2.getNome() + ", " + pet2.getIdade() + " anos, " + pet2.getPeso() + " kg");
 
 		// pet2.idade = -5; // não compila mais, o atributo é private!
+
+		// ===== Aula 4 - Construtores =====
+		System.out.println("\n - - - Testando os construtores - - -");
+		Pet resgatado = new Pet(); // construtor padrão
+		Pet filhote = new Pet("Pipoca", "Gato"); // idade começa em 0
+		System.out.println("Resgatado: " + resgatado.getNome() + " | Espécie: " + resgatado.getEspecie());
+		System.out.println("Filhote: " + filhote.getNome() + " | " + filhote.getEspecie() + " | " + filhote.getIdade() + " anos");
+
+		// pet1.setEspecie("Gato"); // não existe, a espécie não muda depois de criada
 	}
 
 }

@@ -1,6 +1,7 @@
 package br.com.fiapride.main;
 
 import br.com.fiapride.model.Passageiro;
+import br.com.fiapride.model.Veiculo;
 
 public class SistemaPrincipal {
 
@@ -33,5 +34,21 @@ public class SistemaPrincipal {
 
         // Tentativa de hackear o sistema:
         // passageiro1.saldo = 999999.0; // não compila, o atributo é private!
+
+        // ===== Aula 4 - Construtores =====
+        System.out.println("\n--- Aula 4: Construtores ---");
+        Passageiro passageiro3 = new Passageiro("Bruna Lima", "444.444.444-44", 30.0);
+        System.out.println("Passageiro: " + passageiro3.getNome() + " | Saldo: R$ " + passageiro3.getSaldo());
+
+        // TESTE 1: A forma correta (Nascimento legalizado)
+        Veiculo meuCarro = new Veiculo("ABC-1234", "Toyota Corolla");
+        meuCarro.atualizarPlaca("XYZ-9876"); // placa válida
+        meuCarro.atualizarPlaca("");         // placa inválida, deve bloquear
+        System.out.println("Placa final: " + meuCarro.getPlaca() + " | Modelo: " + meuCarro.getModelo());
+
+        // TESTE 2: Tentando burlar o sistema
+        // Veiculo carroFantasma = new Veiculo();
+        // Não compila: "The constructor Veiculo() is undefined"
+        // Quando criamos um construtor com parâmetros, o Java não cria mais o construtor vazio.
     }
 }
