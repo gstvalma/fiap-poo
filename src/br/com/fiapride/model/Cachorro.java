@@ -11,6 +11,11 @@ public class Cachorro extends Pet {
 		this.setPorte(porte);
 	}
 
+	// Construtor padrão: cachorro resgatado sem nome e sem tutor (porte médio por padrão)
+	public Cachorro() {
+		this("Sem nome", null, "M");
+	}
+
 	@Override
 	public String emitirSom() {
 		return "Au Au!";

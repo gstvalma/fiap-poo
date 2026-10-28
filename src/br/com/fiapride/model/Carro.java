@@ -28,6 +28,11 @@ public class Carro extends Veiculo {
         this.capacidadePassageiros = capacidadePassageiros;
     }
 
+    @Override
+    public void exibirTipo() {
+        System.out.println("Sou um Carro");
+    }
+
     @Override // garante que estou sobrescrevendo o método da mãe (se errar o nome, dá erro)
     public String calcularAutonomia() {
         double kmRestante = this.getNivelCombustivel() * 10.0;

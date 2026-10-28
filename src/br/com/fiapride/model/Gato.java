@@ -10,6 +10,11 @@ public class Gato extends Pet {
 		this.castrado = castrado;
 	}
 
+	// Construtor padrão: gato resgatado, sem tutor e ainda não castrado
+	public Gato() {
+		this("Sem nome", null, false);
+	}
+
 	@Override
 	public String emitirSom() {
 		return "Miau!";

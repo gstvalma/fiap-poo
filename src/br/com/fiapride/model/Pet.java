@@ -1,6 +1,7 @@
 package br.com.fiapride.model;
 
-public class Pet{
+// 'abstract': na clínica não existe "um pet" genérico, ele sempre é cachorro, gato, pássaro...
+public abstract class Pet{
 
 	private String nome;
 	private String especie;
@@ -60,10 +61,8 @@ public class Pet{
 		return this.peso * 20;
 	}
 
-	// Comportamento genérico, cada filha sobrescreve com o seu som
-	public String emitirSom() {
-		return "...";
-	}
+	// Abstrato: não existe um som "de pet genérico", então cada filha é obrigada a dizer o seu
+	public abstract String emitirSom();
 
 	public void trocarTutor(Tutor novoTutor) {
 		// Regra: um pet adotado não pode ficar "sem ninguém" por engano

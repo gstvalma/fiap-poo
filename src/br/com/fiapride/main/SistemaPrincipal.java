@@ -47,7 +47,7 @@ public class SistemaPrincipal {
         System.out.println("Passageiro: " + passageiro3.getNome() + " | Saldo: R$ " + passageiro3.getSaldo());
 
         // TESTE 1: A forma correta (Nascimento legalizado)
-        Veiculo meuCarro = new Veiculo("ABC-1234", "Toyota Corolla");
+        Veiculo meuCarro = new Carro("ABC-1234", "Toyota Corolla", 4); // (aula 8: Veiculo virou abstrata)
         meuCarro.atualizarPlaca("XYZ-9876"); // placa válida
         meuCarro.atualizarPlaca("");         // placa inválida, deve bloquear
         System.out.println("Placa final: " + meuCarro.getPlaca() + " | Modelo: " + meuCarro.getModelo());
@@ -61,7 +61,7 @@ public class SistemaPrincipal {
         System.out.println("\n--- Aula 5: Associação ---");
         // 1. Criamos os "atores" independentes primeiro
         Passageiro ana = new Passageiro("Ana Silva", "222.222.222-22");
-        Veiculo carroDoJoao = new Veiculo("ABC-1234", "Toyota Corolla");
+        Veiculo carroDoJoao = new Carro("ABC-1234", "Toyota Corolla", 4);
 
         // 2. Criamos a Viagem, conectando (associando) os objetos
         Viagem viagemDaAna = new Viagem("Avenida Paulista, 1000", ana, carroDoJoao);
@@ -115,5 +115,26 @@ public class SistemaPrincipal {
             System.out.println("---------------------------------------");
         }
         uberX.abastecer(-10); // inválido
+
+        // ===== Aula 8 - Classes Abstratas =====
+        System.out.println("\n=== FIAPRIDE: Teste de Classes Abstratas ===");
+        // Veiculo v = new Veiculo("ABC-1234", "Generico");
+        // ❌ Não compila: "Cannot instantiate the type Veiculo" -> Veiculo é só um molde!
+
+        Veiculo taxi = new Carro("PQR-1111", "Chevrolet Onix", 4);
+        Veiculo mototaxi = new Moto("STU-2222", "Honda Biz", false);
+        taxi.exibirTipo();
+        mototaxi.exibirTipo();
+
+        System.out.println("\n=== Polimorfismo com Classe Abstrata ===");
+        Veiculo[] frotaNova = new Veiculo[] {
+            new Carro("VWX-3333", "Fiat Uno", 4),
+            new Moto("YZA-4444", "Yamaha Factor", false),
+            new Carro("BCD-5555", "Honda Civic", 5)
+        };
+        for (Veiculo v : frotaNova) {
+            System.out.print(v.getModelo() + " -> ");
+            v.exibirTipo();
+        }
     }
 }

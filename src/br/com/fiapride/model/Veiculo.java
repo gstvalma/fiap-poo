@@ -1,6 +1,8 @@
 package br.com.fiapride.model;
 
-public class Veiculo {
+// 'abstract': não existe um veículo genérico na rua, só Carro, Moto...
+// Então ninguém pode dar new Veiculo(), ela é só o molde das filhas
+public abstract class Veiculo {
 
     // 1. Atributos sempre privados (Encapsulamento)
     private String placa;
@@ -8,6 +10,7 @@ public class Veiculo {
     private double nivelCombustivel; // em litros
 
     // 2. O CONSTRUTOR (O Cartório)
+    // Classe abstrata ainda tem construtor, ele é chamado pelas filhas via super()
     public Veiculo(String placa, String modelo) {
         // Usamos o setter privado para validar a placa logo no nascimento!
         this.setPlaca(placa);
@@ -44,6 +47,10 @@ public class Veiculo {
 
     // Obs: O modelo do carro é IMUTÁVEL na vida real (um Fiat Uno não se transforma em um Corolla).
     // Por isso NÃO existe setModelo()!
+
+    // ===== Aula 8 - Classes Abstratas =====
+    // Método abstrato (sem corpo): OBRIGA toda filha a implementar
+    public abstract void exibirTipo();
 
     // ===== Aula 7 - Polimorfismo =====
     // O "contrato" fica na mãe para que o loop da frota consiga chamar em qualquer veículo
