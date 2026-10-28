@@ -2,10 +2,10 @@ package br.com.fiapride.model;
 
 public class Pet{
 
-	public String nome;
-	public String especie;
-	public double idade; //Idade em anos. 1 ano e seis meses, por exemplo, seriam 1.5
-	public double peso; //Peso em kg
+	private String nome;
+	private String especie;
+	private double idade; //Idade em anos. 1 ano e seis meses, por exemplo, seriam 1.5
+	private double peso; //Peso em kg
 
 	public void fazerAniversario() {
 		// Regra de negócio: nenhum pet passa dos 40 anos (nem papagaio vive tanto)
@@ -13,18 +13,12 @@ public class Pet{
 			System.out.println("Erro: " + this.nome + " não pode passar dos 40 anos.");
 			return;
 		}
-		this.idade += 1;
+		this.setIdade(this.idade + 1);
 		System.out.println("Parabéns " + this.nome + "! Agora tem " + this.idade + " anos.");
 	}
 
 	public void atualizarPeso(double novoPeso) {
-		// Regra de negócio: o peso precisa ser positivo e realista
-		if (novoPeso <= 0 || novoPeso > 100) {
-			System.out.println("Erro: peso inválido para " + this.nome + " (" + novoPeso + " kg).");
-			return;
-		}
-		this.peso = novoPeso;
-		System.out.println("Peso de " + this.nome + " atualizado para " + this.peso + " kg.");
+		this.setPeso(novoPeso);
 	}
 
 	public int calcularIdadeEmMeses() {
@@ -40,6 +34,56 @@ public class Pet{
 		}
 		// Regra geral: 20g de ração por kg
 		return this.peso * 20;
+	}
+
+	// GETTERS (leitura)
+	public String getNome() {
+		return this.nome;
+	}
+
+	public String getEspecie() {
+		return this.especie;
+	}
+
+	public double getIdade() {
+		return this.idade;
+	}
+
+	public double getPeso() {
+		return this.peso;
+	}
+
+	// SETTERS (escrita com regra)
+	public void setNome(String nome) {
+		// nome vazio não identifica ninguém na clínica
+		if (nome == null || nome.trim().isEmpty()) {
+			System.out.println("Erro: o nome do pet não pode ser vazio.");
+			return;
+		}
+		this.nome = nome;
+	}
+
+	public void setEspecie(String especie) {
+		this.especie = especie;
+	}
+
+	public void setIdade(double idade) {
+		// Regra especial: idade entre 0 e 40 anos
+		if (idade < 0 || idade > 40) {
+			System.out.println("Erro: idade inválida (" + idade + "). Deve ser entre 0 e 40 anos.");
+			return;
+		}
+		this.idade = idade;
+	}
+
+	// Privado: o peso só muda pelo atualizarPeso(), que é a ação de "pesar" o pet
+	private void setPeso(double peso) {
+		if (peso <= 0 || peso > 100) {
+			System.out.println("Erro: peso inválido para " + this.nome + " (" + peso + " kg).");
+			return;
+		}
+		this.peso = peso;
+		System.out.println("Peso de " + this.nome + " atualizado para " + this.peso + " kg.");
 	}
 
 }
