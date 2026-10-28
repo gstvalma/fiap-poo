@@ -1,5 +1,7 @@
 package br.com.fiapride.main;
 
+import br.com.fiapride.model.Carro;
+import br.com.fiapride.model.Moto;
 import br.com.fiapride.model.Passageiro;
 import br.com.fiapride.model.Veiculo;
 import br.com.fiapride.model.Viagem;
@@ -72,5 +74,26 @@ public class SistemaPrincipal {
         viagemDaAna.finalizarViagem(27.90);
         viagemDaAna.exibirResumo();
         System.out.println("Saldo final da Ana: R$ " + ana.getSaldo());
+
+        // ===== Aula 6 - Herança =====
+        System.out.println("\n--- Aula 6: Teste de Frota (Herança) ---");
+        int quantidadePassageiro = 4;
+        Carro uberX = new Carro("DEF-1234", "Chevrolet Onix", quantidadePassageiro);
+        Moto mottu = new Moto("GHI-9999", "Caloi City", true);
+        Carro carroErrado = new Carro("JKL-5555", "Fiat Mobi", 50); // capacidade inválida
+
+        // getPlaca() e getModelo() não estão escritos no Carro, ele herdou da mãe!
+        System.out.println("Carro modelo: " + uberX.getModelo() + " | Placa: " + uberX.getPlaca());
+        System.out.println("Vagas para passageiros: " + uberX.getCapacidadePassageiros());
+        System.out.println("Vagas do " + carroErrado.getModelo() + ": " + carroErrado.getCapacidadePassageiros());
+
+        System.out.println("\nMoto modelo: " + mottu.getModelo() + " | Placa: " + mottu.getPlaca());
+        if (mottu.isEletrica()) {
+            System.out.println("Atenção: Esta moto é elétrica e atinge maiores velocidades!");
+        }
+
+        // Um Carro também é um Veiculo, então pode ser usado numa Viagem
+        Viagem viagemDeMoto = new Viagem("FIAP Paulista", passageiro1, mottu);
+        viagemDeMoto.exibirResumo();
     }
 }

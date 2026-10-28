@@ -1,5 +1,8 @@
 package br.com.fiapride.main;
 
+import br.com.fiapride.model.Cachorro;
+import br.com.fiapride.model.Gato;
+import br.com.fiapride.model.Passaro;
 import br.com.fiapride.model.Pet;
 import br.com.fiapride.model.Tutor;
 
@@ -63,6 +66,25 @@ public class TestePet {
 		resgatado.trocarTutor(null); // bloqueado
 		resgatado.trocarTutor(marina); // adoção!
 		resgatado.exibirFicha();
+
+		// ===== Aula 6 - Herança =====
+		System.out.println("\n - - - Testando a herança - - -");
+		Cachorro hemerson = new Cachorro("Hemerson", luiz, "M");
+		Gato mingau = new Gato("Mingau", marina, false);
+		Passaro mariaBraga = new Passaro("Maria Braga", luiz, true);
+		Cachorro semPorte = new Cachorro("Bidu", marina, "XXL"); // porte inválido
+
+		// métodos herdados da mãe Pet
+		hemerson.atualizarPeso(12.5);
+		hemerson.exibirFicha();
+		System.out.println("Porte do " + hemerson.getNome() + ": " + hemerson.getPorte());
+		System.out.println("Porte do " + semPorte.getNome() + ": " + semPorte.getPorte());
+
+		mingau.castrar();
+		mingau.castrar(); // já castrado, deve bloquear
+		System.out.println(mingau.getNome() + " é castrado? " + mingau.isCastrado());
+
+		System.out.println(mariaBraga.getNome() + " (" + mariaBraga.getEspecie() + ") pode voar solto? " + mariaBraga.podeVoarSolto());
 	}
 
 }
