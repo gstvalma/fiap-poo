@@ -6,6 +6,7 @@ public class Pet{
 	private String especie;
 	private double idade; //Idade em anos. 1 ano e seis meses, por exemplo, seriam 1.5
 	private double peso; //Peso em kg
+	private Tutor tutor; // Associação: o Pet TEM UM Tutor
 
 	// CONSTRUTOR PADRÃO: pet resgatado que chegou sem nenhuma informação
 	public Pet() {
@@ -17,11 +18,17 @@ public class Pet{
 		this(nome, especie, 0);
 	}
 
-	// Construtor completo, os outros chamam este com this(...)
+	// Pet de abrigo: tem idade estimada, mas ainda não tem tutor
 	public Pet(String nome, String especie, double idade) {
+		this(nome, especie, (Tutor) null);
+		this.setIdade(idade);
+	}
+
+	// Construtor principal: recebe o objeto Tutor inteiro (não só o nome dele)
+	public Pet(String nome, String especie, Tutor tutor) {
 		this.setNome(nome);
 		this.especie = especie;
-		this.setIdade(idade);
+		this.tutor = tutor;
 	}
 
 	public void fazerAniversario() {
@@ -53,7 +60,34 @@ public class Pet{
 		return this.peso * 20;
 	}
 
+	public void trocarTutor(Tutor novoTutor) {
+		// Regra: um pet adotado não pode ficar "sem ninguém" por engano
+		if (novoTutor == null) {
+			System.out.println("Erro: informe o novo tutor de " + this.nome);
+			return;
+		}
+		this.tutor = novoTutor;
+		System.out.println(this.nome + " agora é de " + this.tutor.getNome());
+	}
+
+	public void exibirFicha() {
+		System.out.println("\n--- FICHA DO PET ---");
+		System.out.println("Nome: " + this.nome + " | Espécie: " + this.especie);
+		System.out.println("Idade: " + this.idade + " anos | Peso: " + this.peso + " kg");
+		// Navegando entre os objetos: Pet -> Tutor -> nome/telefone
+		if (this.tutor != null) {
+			System.out.println("Tutor: " + this.tutor.getNome() + " | Tel: " + this.tutor.getTelefone());
+		} else {
+			System.out.println("Tutor: nenhum (disponível para adoção)");
+		}
+		System.out.println("--------------------");
+	}
+
 	// GETTERS (leitura)
+	public Tutor getTutor() {
+		return this.tutor;
+	}
+
 	public String getNome() {
 		return this.nome;
 	}

@@ -1,6 +1,7 @@
 package br.com.fiapride.main;
 
 import br.com.fiapride.model.Pet;
+import br.com.fiapride.model.Tutor;
 
 public class TestePet {
 
@@ -41,6 +42,27 @@ public class TestePet {
 		System.out.println("Filhote: " + filhote.getNome() + " | " + filhote.getEspecie() + " | " + filhote.getIdade() + " anos");
 
 		// pet1.setEspecie("Gato"); // não existe, a espécie não muda depois de criada
+
+		// ===== Aula 5 - Associação =====
+		System.out.println("\n - - - Testando a associação Pet -> Tutor - - -");
+		Tutor luiz = new Tutor("Luiz", "11 99999-1234");
+		Tutor marina = new Tutor("Marina", "11 98888-4321");
+
+		Pet thor = new Pet("Thor", "Cachorro", luiz);
+		thor.atualizarPeso(30);
+		thor.exibirFicha();
+
+		// Lendo um dado do objeto associado
+		System.out.println("Ligar para o tutor do " + thor.getNome() + ": " + thor.getTutor().getTelefone());
+
+		// Prova da referência: se o tutor muda o telefone, a ficha do pet já enxerga
+		luiz.atualizarTelefone("11 97777-0000");
+		System.out.println("Telefone visto pelo pet: " + thor.getTutor().getTelefone());
+
+		resgatado.exibirFicha(); // sem tutor
+		resgatado.trocarTutor(null); // bloqueado
+		resgatado.trocarTutor(marina); // adoção!
+		resgatado.exibirFicha();
 	}
 
 }

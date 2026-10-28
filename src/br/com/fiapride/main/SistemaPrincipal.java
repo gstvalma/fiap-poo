@@ -2,6 +2,7 @@ package br.com.fiapride.main;
 
 import br.com.fiapride.model.Passageiro;
 import br.com.fiapride.model.Veiculo;
+import br.com.fiapride.model.Viagem;
 
 public class SistemaPrincipal {
 
@@ -50,5 +51,26 @@ public class SistemaPrincipal {
         // Veiculo carroFantasma = new Veiculo();
         // Não compila: "The constructor Veiculo() is undefined"
         // Quando criamos um construtor com parâmetros, o Java não cria mais o construtor vazio.
+
+        // ===== Aula 5 - Associação =====
+        System.out.println("\n--- Aula 5: Associação ---");
+        // 1. Criamos os "atores" independentes primeiro
+        Passageiro ana = new Passageiro("Ana Silva", "222.222.222-22");
+        Veiculo carroDoJoao = new Veiculo("ABC-1234", "Toyota Corolla");
+
+        // 2. Criamos a Viagem, conectando (associando) os objetos
+        Viagem viagemDaAna = new Viagem("Avenida Paulista, 1000", ana, carroDoJoao);
+        viagemDaAna.exibirResumo();
+
+        // 3. Prova da Passagem por Referência:
+        // a Ana coloca saldo DEPOIS que a viagem foi criada... a viagem enxerga?
+        ana.adicionarSaldo(50.0);
+        System.out.println("Saldo da Ana consultado ATRAVÉS da Viagem: R$ " + viagemDaAna.getSolicitante().getSaldo());
+
+        // 4. Fim da viagem: a Viagem cobra direto do objeto Passageiro
+        viagemDaAna.finalizarViagem(-5);   // inválido
+        viagemDaAna.finalizarViagem(27.90);
+        viagemDaAna.exibirResumo();
+        System.out.println("Saldo final da Ana: R$ " + ana.getSaldo());
     }
 }
