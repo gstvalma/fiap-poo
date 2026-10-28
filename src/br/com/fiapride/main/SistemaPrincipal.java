@@ -4,8 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.fiapride.model.Carro;
+import br.com.fiapride.model.CarroEletrico;
+import br.com.fiapride.model.Celular;
 import br.com.fiapride.model.Moto;
 import br.com.fiapride.model.Passageiro;
+import br.com.fiapride.model.Recarregavel;
 import br.com.fiapride.model.Veiculo;
 import br.com.fiapride.model.Viagem;
 
@@ -136,5 +139,40 @@ public class SistemaPrincipal {
             System.out.print(v.getModelo() + " -> ");
             v.exibirTipo();
         }
+
+        // ===== Aula 9 - Interfaces =====
+        System.out.println("\n=== FIAPRIDE: Teste de Interfaces ===");
+        CarroEletrico tesla = new CarroEletrico("TES-9999", "Tesla Model 3");
+        Celular celularDoMotorista = new Celular("iPhone 15");
+
+        // Objetos de classes DIFERENTES tratados como Recarregavel
+        Recarregavel[] recarregaveis = new Recarregavel[] { tesla, celularDoMotorista };
+
+        System.out.println("=== Recarregando Tudo ===");
+        for (Recarregavel r : recarregaveis) {
+            r.recarregar(85); // Mesmo método, comportamentos diferentes
+            System.out.println("---");
+        }
+        tesla.recarregar(150); // inválido, passa da CARGA_MAXIMA
+
+        System.out.println("\n=== Múltiplos Tipos ===");
+        // CarroEletrico É UM Veiculo E TAMBÉM É Recarregavel
+        System.out.println("Tesla é um Veiculo? " + (tesla instanceof Veiculo));
+        System.out.println("Tesla é Recarregavel? " + (tesla instanceof Recarregavel));
+        // Celular NÃO é Veiculo, MAS é Recarregavel
+        System.out.println("Celular é um Veiculo? " + (Veiculo.class.isInstance(celularDoMotorista)));
+        System.out.println("Celular é Recarregavel? " + (celularDoMotorista instanceof Recarregavel));
+
+        // O carro elétrico também entra na frota polimórfica
+        frota.add(tesla);
+        System.out.println("\n=== Autonomia da frota completa ===");
+        for (Veiculo veiculo : frota) {
+            System.out.print(veiculo.getModelo() + " | ");
+            System.out.println(veiculo.calcularAutonomia());
+        }
+
+        // E pode fazer uma viagem como qualquer Veiculo
+        Viagem viagemEletrica = new Viagem("Aeroporto de Congonhas", passageiro3, tesla);
+        viagemEletrica.finalizarViagem(25.0);
     }
 }

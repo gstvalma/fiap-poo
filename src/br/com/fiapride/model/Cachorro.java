@@ -1,9 +1,10 @@
 package br.com.fiapride.model;
 
 // Cachorro É UM Pet
-public class Cachorro extends Pet {
+public class Cachorro extends Pet implements Vacinavel {
 
 	private String porte; // P, M ou G
+	private int quantidadeVacinas;
 
 	public Cachorro(String nome, Tutor tutor, String porte) {
 		// a espécie já é fixa, quem chama não precisa informar
@@ -14,6 +15,27 @@ public class Cachorro extends Pet {
 	// Construtor padrão: cachorro resgatado sem nome e sem tutor (porte médio por padrão)
 	public Cachorro() {
 		this("Sem nome", null, "M");
+	}
+
+	// ===== Aula 9 - Interface Vacinavel =====
+	@Override
+	public void vacinar(String nomeVacina) {
+		if (nomeVacina == null || nomeVacina.trim().isEmpty()) {
+			System.out.println("Erro: informe o nome da vacina.");
+			return;
+		}
+		// Regra: filhote muito novo ainda não pode ser vacinado
+		if (this.calcularIdadeEmMeses() < Vacinavel.IDADE_MINIMA_VACINA_MESES) {
+			System.out.println("Erro: " + this.getNome() + " tem menos de " + Vacinavel.IDADE_MINIMA_VACINA_MESES + " meses, ainda não pode tomar a " + nomeVacina + ".");
+			return;
+		}
+		this.quantidadeVacinas++;
+		System.out.println("💉 " + this.getNome() + " tomou a vacina " + nomeVacina + ". Total: " + this.quantidadeVacinas);
+	}
+
+	@Override
+	public int getQuantidadeVacinas() {
+		return this.quantidadeVacinas;
 	}
 
 	@Override

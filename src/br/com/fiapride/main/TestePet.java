@@ -8,6 +8,7 @@ import br.com.fiapride.model.Gato;
 import br.com.fiapride.model.Passaro;
 import br.com.fiapride.model.Pet;
 import br.com.fiapride.model.Tutor;
+import br.com.fiapride.model.Vacinavel;
 
 public class TestePet {
 
@@ -115,6 +116,30 @@ public class TestePet {
 		for (Pet pet : sala) {
 			System.out.println(pet.getNome() + ": " + pet.emitirSom());
 		}
+
+		// ===== Aula 9 - Interfaces =====
+		System.out.println("\n - - - Campanha de vacinação (interface Vacinavel) - - -");
+		System.out.println("Idade mínima para vacinar: " + Vacinavel.IDADE_MINIMA_VACINA_MESES + " meses");
+		hemerson.setIdade(2.0);
+		mingau.setIdade(1.5);
+		pipoca.setIdade(0.1); // pouco mais de 1 mês, ainda não pode
+
+		// Classes de hierarquias DIFERENTES (Pet e Tutor) tratadas pelo mesmo contrato
+		Vacinavel[] fila = new Vacinavel[] { hemerson, mingau, pipoca, luiz };
+		for (Vacinavel v : fila) {
+			v.vacinar("Antirrábica");
+		}
+		hemerson.vacinar("V10");
+		hemerson.vacinar(""); // inválido
+
+		System.out.println("Vacinas do " + hemerson.getNome() + ": " + hemerson.getQuantidadeVacinas());
+		System.out.println("Vacinas da " + pipoca.getNome() + ": " + pipoca.getQuantidadeVacinas());
+		System.out.println("Vacinas do tutor " + luiz.getNome() + ": " + luiz.getQuantidadeVacinas());
+
+		// Pássaro não assina o contrato, então não entra na fila:
+		// Vacinavel v = mariaBraga; // não compila
+		System.out.println(mariaBraga.getNome() + " é Vacinavel? " + (Vacinavel.class.isInstance(mariaBraga)));
+		System.out.println(hemerson.getNome() + " é Pet? " + (hemerson instanceof Pet) + " | é Vacinavel? " + (hemerson instanceof Vacinavel));
 	}
 
 }
