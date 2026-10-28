@@ -1,5 +1,8 @@
 package br.com.fiapride.main;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import br.com.fiapride.model.Cachorro;
 import br.com.fiapride.model.Gato;
 import br.com.fiapride.model.Passaro;
@@ -85,6 +88,24 @@ public class TestePet {
 		System.out.println(mingau.getNome() + " é castrado? " + mingau.isCastrado());
 
 		System.out.println(mariaBraga.getNome() + " (" + mariaBraga.getEspecie() + ") pode voar solto? " + mariaBraga.podeVoarSolto());
+
+		// ===== Aula 7 - Polimorfismo =====
+		System.out.println("\n - - - Relatório da clínica (polimorfismo) - - -");
+		mingau.atualizarPeso(4.0);
+		mariaBraga.atualizarPeso(0.09);
+
+		List<Pet> pacientes = new ArrayList<>();
+		pacientes.add(hemerson);
+		pacientes.add(mingau);
+		pacientes.add(mariaBraga);
+		pacientes.add(semPorte); // sem peso cadastrado
+
+		// Sem nenhum if para descobrir o tipo: cada objeto sabe o seu som e a sua ração
+		for (Pet pet : pacientes) {
+			System.out.println(pet.getNome() + " (" + pet.getEspecie() + ") diz: " + pet.emitirSom());
+			System.out.println("Ração diária: " + pet.calcularRacaoDiaria() + "g");
+			System.out.println("---");
+		}
 	}
 
 }

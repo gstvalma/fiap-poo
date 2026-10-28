@@ -11,6 +11,24 @@ public class Cachorro extends Pet {
 		this.setPorte(porte);
 	}
 
+	@Override
+	public String emitirSom() {
+		return "Au Au!";
+	}
+
+	@Override
+	public double calcularRacaoDiaria() {
+		// sem peso, reaproveito o aviso da mãe
+		if (this.getPeso() <= 0) {
+			return super.calcularRacaoDiaria();
+		}
+		// cachorro grande come proporcionalmente menos por kg
+		if ("G".equals(this.porte)) {
+			return this.getPeso() * 15;
+		}
+		return this.getPeso() * 25;
+	}
+
 	public String getPorte() {
 		return this.porte;
 	}

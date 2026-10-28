@@ -10,6 +10,20 @@ public class Passaro extends Pet {
 		this.asaCortada = asaCortada;
 	}
 
+	@Override
+	public String emitirSom() {
+		return "Piu piu!";
+	}
+
+	@Override
+	public double calcularRacaoDiaria() {
+		if (this.getPeso() <= 0) {
+			return super.calcularRacaoDiaria();
+		}
+		// pássaro come cerca de 10% do próprio peso em sementes (peso em kg * 1000 * 0.10)
+		return this.getPeso() * 100;
+	}
+
 	public boolean isAsaCortada() {
 		return this.asaCortada;
 	}

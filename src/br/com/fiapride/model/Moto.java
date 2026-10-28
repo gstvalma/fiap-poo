@@ -12,4 +12,10 @@ public class Moto extends Veiculo {
     public boolean isEletrica() {
         return this.isEletrica;
     }
+
+    @Override
+    public String calcularAutonomia() {
+        double kmRestante = this.getNivelCombustivel() * 35.0;
+        return "Autonomia: " + kmRestante + " km (Consumo de 35 km/l).";
+    }
 }

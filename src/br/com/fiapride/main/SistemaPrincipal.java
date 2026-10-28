@@ -1,5 +1,8 @@
 package br.com.fiapride.main;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import br.com.fiapride.model.Carro;
 import br.com.fiapride.model.Moto;
 import br.com.fiapride.model.Passageiro;
@@ -95,5 +98,22 @@ public class SistemaPrincipal {
         // Um Carro também é um Veiculo, então pode ser usado numa Viagem
         Viagem viagemDeMoto = new Viagem("FIAP Paulista", passageiro1, mottu);
         viagemDeMoto.exibirResumo();
+
+        // ===== Aula 7 - Polimorfismo =====
+        // Lista da SUPERCLASSE: aceita qualquer herdeiro
+        List<Veiculo> frota = new ArrayList<>();
+        frota.add(uberX);
+        frota.add(mottu);
+        frota.add(new Carro("MNO-4321", "Honda Civic", 5));
+
+        System.out.println("--- ⛽ RELATÓRIO DE AUTONOMIA DA FROTA ---");
+        // Mesmo comando, resultados diferentes: o Java usa a conta de cada classe
+        for (Veiculo veiculo : frota) {
+            System.out.println("Veículo: " + veiculo.getModelo());
+            veiculo.abastecer(50);
+            System.out.println(veiculo.calcularAutonomia());
+            System.out.println("---------------------------------------");
+        }
+        uberX.abastecer(-10); // inválido
     }
 }

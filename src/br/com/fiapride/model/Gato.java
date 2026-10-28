@@ -10,6 +10,20 @@ public class Gato extends Pet {
 		this.castrado = castrado;
 	}
 
+	@Override
+	public String emitirSom() {
+		return "Miau!";
+	}
+
+	@Override
+	public double calcularRacaoDiaria() {
+		if (this.getPeso() <= 0) {
+			return super.calcularRacaoDiaria();
+		}
+		// gato come uns 15g por kg
+		return this.getPeso() * 15;
+	}
+
 	public boolean isCastrado() {
 		return this.castrado;
 	}

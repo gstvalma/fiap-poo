@@ -5,6 +5,7 @@ public class Veiculo {
     // 1. Atributos sempre privados (Encapsulamento)
     private String placa;
     private String modelo;
+    private double nivelCombustivel; // em litros
 
     // 2. O CONSTRUTOR (O Cartório)
     public Veiculo(String placa, String modelo) {
@@ -43,4 +44,27 @@ public class Veiculo {
 
     // Obs: O modelo do carro é IMUTÁVEL na vida real (um Fiat Uno não se transforma em um Corolla).
     // Por isso NÃO existe setModelo()!
+
+    // ===== Aula 7 - Polimorfismo =====
+    // O "contrato" fica na mãe para que o loop da frota consiga chamar em qualquer veículo
+    public String calcularAutonomia() {
+        return "Autonomia não definida para um veículo genérico.";
+    }
+
+    public void abastecer(int quantidade) {
+        if (quantidade <= 0) {
+            System.out.println("❌ Erro: quantidade de combustível inválida!");
+            return;
+        }
+        this.setNivelCombustivel(this.getNivelCombustivel() + quantidade);
+    }
+
+    public double getNivelCombustivel() {
+        return this.nivelCombustivel;
+    }
+
+    // Privado: o combustível só entra pelo abastecer()
+    private void setNivelCombustivel(double nivelCombustivel) {
+        this.nivelCombustivel = nivelCombustivel;
+    }
 }

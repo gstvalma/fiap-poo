@@ -56,8 +56,13 @@ public class Pet{
 			System.out.println("Aviso: cadastre o peso de " + this.nome + " antes de calcular a ração.");
 			return 0;
 		}
-		// Regra geral: 20g de ração por kg
+		// Regra geral: 20g de ração por kg (cada espécie sobrescreve com a sua conta)
 		return this.peso * 20;
+	}
+
+	// Comportamento genérico, cada filha sobrescreve com o seu som
+	public String emitirSom() {
+		return "...";
 	}
 
 	public void trocarTutor(Tutor novoTutor) {
